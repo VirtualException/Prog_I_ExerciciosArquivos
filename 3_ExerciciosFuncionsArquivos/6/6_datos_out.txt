@@ -1,0 +1,4 @@
+Media: 51490.000000
+Moda: 14
+Maximo: 616136
+Minimo: -5

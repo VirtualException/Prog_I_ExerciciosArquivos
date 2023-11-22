@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include "1_gcd.h"
 
+/* Greatest Common Divisor */
+
 int
 gcd(int a, int b) {
 
-    // abs() function
+    // o mesmo ca función abs()
     if (a < 0 ) a = -a;
     if (b < 0 ) b = -b;
 

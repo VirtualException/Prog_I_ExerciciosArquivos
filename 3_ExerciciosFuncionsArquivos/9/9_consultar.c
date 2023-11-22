@@ -1,13 +1,23 @@
 #include <stdlib.h>
 #include "9_consultar.h"
 
-/* Days at avery month in a normal year */
+/* Días cada mes nun ano normal */
 int days_per_month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+/* Días en cada mes */
+int
+days_in_month(int m, int year) {
+
+    if (m == 2 && date_leap_year(year)) return 29;
+    else return days_per_month[m];
+
+}
+
+/* Comprobar se 'year' é bisiesto */
 bool
 date_leap_year(int year) {
 
-    if ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0))) {
+    if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
         return true;
     }
 
@@ -15,6 +25,7 @@ date_leap_year(int year) {
 
 }
 
+/* Comprobar se a data é valida */
 bool
 date_valid(date_t* date) {
 
@@ -28,14 +39,7 @@ date_valid(date_t* date) {
     return true;
 }
 
-int
-days_in_month(int m, int year) {
-
-    if (m == 2 && date_leap_year(year)) return 29;
-    else return days_per_month[m];
-
-}
-
+/* Número do día do ano */
 int
 date_day_num(date_t* date) {
 
@@ -58,6 +62,7 @@ date_day_num(date_t* date) {
 
 }
 
+/* Distancia entre datas */
 int
 date_dist(date_t ini, date_t fin) {
 
@@ -104,6 +109,7 @@ date_dist(date_t ini, date_t fin) {
     return 0;
 }
 
+/* Obter a información do tempo do día 'd' */
 weather_data_t
 weather_get_by_date(FILE* file, date_t d) {
 
@@ -115,6 +121,7 @@ weather_get_by_date(FILE* file, date_t d) {
 
     n += date_day_num(&d) - 1;
 
+    /* Pór o cursor na posición do día 'n' */
     fseek(file, n * sizeof(weather_data_t), SEEK_SET);
 
     weather_data_t w = { 0 };
@@ -124,12 +131,16 @@ weather_get_by_date(FILE* file, date_t d) {
 
 }
 
+/* Precipitación media entre 'di' e 'df' */
 float
 weather_get_average_precip(FILE* file, date_t di, date_t df) {
 
     float total_sum = 0;
 
+    /* Número de día do inicio */
     int start = 0;
+
+    /* Total de días dende o inicio */
     int days = date_dist(di, df) + 1;
 
     for (size_t i = 2000; i < di.year; i++) {
@@ -138,6 +149,7 @@ weather_get_average_precip(FILE* file, date_t di, date_t df) {
 
     start += date_day_num(&di) - 1;
 
+    /* Sumar todos od datos de precipitación entre 'di' e 'df' */
     for (size_t i = 0; i < days; i++) {
 
         fseek(file, (start + i) * sizeof(weather_data_t), SEEK_SET);
@@ -153,7 +165,7 @@ weather_get_average_precip(FILE* file, date_t di, date_t df) {
 
 }
 
-
+/* Leer a data dada polo usuario */
 date_t
 input_date() {
 
@@ -186,6 +198,7 @@ main(int argc, char** argv) {
         exit(1);
     }
 
+    /* Inicio da consulta */
 get_op:
 
     printf("Que queres consultar?\n"
@@ -194,6 +207,7 @@ get_op:
 
     switch (getchar()) {
 
+    /* WeatherData dunha data especifica */
     case '1':
 
         printf("Introduce a data de consulta:\n");
@@ -213,6 +227,7 @@ get_op:
 
         break;
 
+    /* Precipitacion media entre dous datas */
     case '2':
 
         printf("Introduce as datas de consulta:\n");

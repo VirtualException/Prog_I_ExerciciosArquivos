@@ -3,9 +3,10 @@
 #include "2_data.h"
 
 
-/* Days at avery month in a normal year*/
+/* Días cada mes nun ano normal */
 int days_per_month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+/* Días en cada mes */
 int
 days_in_month(int m, int year) {
 
@@ -14,6 +15,7 @@ days_in_month(int m, int year) {
 
 }
 
+/* Comprobar se 'year' é bisiesto */
 bool
 date_leap_year(int year) {
 
@@ -25,6 +27,7 @@ date_leap_year(int year) {
 
 }
 
+/* Comprobar se a data é valida */
 bool
 date_valid(date_t* date) {
 
@@ -38,6 +41,7 @@ date_valid(date_t* date) {
     return true;
 }
 
+/* Número do día do ano */
 int
 date_day_num(date_t* date) {
 

@@ -87,6 +87,7 @@ list_average(int* list, size_t size) {
     return (float) (sum / size);
 }
 
+/* Facer unha pasada no algoritmo de ordear */
 int
 list_order_onepass(int* list, size_t size) {
 
@@ -102,6 +103,7 @@ list_order_onepass(int* list, size_t size) {
     return 0;
 }
 
+/* Ordear lista facendo pasadas ata que non haxa valores descolocados */
 void
 list_order(int* list, size_t size) {
 

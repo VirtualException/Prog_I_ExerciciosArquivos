@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include "8_weather.h"
 
+/* Leer có formato WEATHER_FORMAT a estrutura do tempo 'w_out' */
 void
 weather_parse(char* line, weather_data_t* w_out) {
 
+    /* Reemplazar os caracteres '"', ',' e '/' por un espazo en branco */
     for (size_t i = 0; line[i] != '\0'; i++) {
         if (line[i] == '\"' || line[i] == ',' || line[i] == '/') {
             line[i] = ' ';
         }
     }
-
-
 
     sscanf(line, WEATHER_FORMAT,
         &w_out->date.day, &w_out->date.month, &w_out->date.year,

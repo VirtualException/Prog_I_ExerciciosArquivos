@@ -12,6 +12,7 @@ switch_values(int* a, int* b) {
 
 }
 
+/* Facer unha pasada no algoritmo de ordear */
 int
 list_order_onepass(int* list, size_t size) {
 
@@ -27,6 +28,7 @@ list_order_onepass(int* list, size_t size) {
     return 0;
 }
 
+/* Ordear lista facendo pasadas ata que non haxa valores descolocados */
 void
 list_order(int* list, size_t size) {
 
@@ -41,6 +43,7 @@ main(int argc, char** argv) {
 
     printf("Lista: ");
 
+    /* Imprimir lista */
     for (size_t i = 0; i < LIST_N; i++) {
         printf("%d ", list[i]);
     }
@@ -51,6 +54,7 @@ main(int argc, char** argv) {
 
     printf("Lista ordenada: ");
 
+    /* Imprimir lista */
     for (size_t i = 0; i < LIST_N; i++) {
         printf("%d ", list[i]);
     }

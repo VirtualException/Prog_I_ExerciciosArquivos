@@ -36,7 +36,6 @@ typedef struct weather_data_t {
 } __attribute__((__packed__)) weather_data_t;
 
 
-
 int days_in_month(int m, int year);
 int date_day_num(date_t* date);
 bool date_leap_year(int year);

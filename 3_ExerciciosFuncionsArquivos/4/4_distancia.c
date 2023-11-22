@@ -3,13 +3,23 @@
 #include <stdbool.h>
 #include "4_distancia.h"
 
-/* Days at avery month in a normal year */
+/* Días cada mes nun ano normal */
 int days_per_month[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+/* Días en cada mes */
+int
+days_in_month(int m, int year) {
+
+    if (m == 2 && date_leap_year(year)) return 29;
+    else return days_per_month[m];
+
+}
+
+/* Comprobar se 'year' é bisiesto */
 bool
 date_leap_year(int year) {
 
-    if ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0))) {
+    if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
         return true;
     }
 
@@ -17,6 +27,7 @@ date_leap_year(int year) {
 
 }
 
+/* Comprobar se a data é valida */
 bool
 date_valid(date_t* date) {
 
@@ -30,20 +41,13 @@ date_valid(date_t* date) {
     return true;
 }
 
-int
-days_in_month(int m, int year) {
-
-    if (m == 2 && date_leap_year(year)) return 29;
-    else return days_per_month[m];
-
-}
-
+/* Número do día do ano */
 int
 date_day_num(date_t* date) {
 
     if (!date_valid(date)) {
 
-        printf("Data invalida\n");
+        printf("Invalid date\n");
         exit(1);
 
     }
@@ -60,7 +64,7 @@ date_day_num(date_t* date) {
 
 }
 
-
+/* Leer a data dada polo usuario */
 date_t
 data_read() {
 
@@ -84,6 +88,7 @@ data_read() {
 
 }
 
+/* Distancia entre datas */
 int
 date_dist(date_t ini, date_t fin) {
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "7_eliminar.h"
 
+/* Reemplazar os caracteres '"', ',' e '/' por un espazo en branco */
 void
 edit_line(char* line) {
 
@@ -23,6 +24,7 @@ main(int argc, char** argv) {
         return 1;
     }
 
+    /* Ignorar a primeira liña (liberando a memoria usada do stack) */
     {
         char ignore[LINE_SIZE] = { 0 };
         fgets(ignore, LINE_SIZE, fin);
